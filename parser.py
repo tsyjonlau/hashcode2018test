@@ -1,4 +1,5 @@
 import sys
+import algo
 
 def readFile(filename):
 	file = open(filename, 'r')
@@ -31,16 +32,17 @@ def readFile(filename):
 				pizza[y][x] = 1
 			x+=1
 		y+=1
+	return infos, pizza
 
 		
-result = {'size':3, 'slice':[(1, 2, 3, 4), (5, 6, 7, 8), (9, 10, 11, 12)]}
+# {'size':3, 'slice':[(1, 2, 3, 4), (5, 6, 7, 8), (9, 10, 11, 12)]}
 		
 def writeOutput(result):
 	file = open('result.out', 'w')
 	
 	file.write(str(result['size']))
 	
-	for slice in result['slice']:
+	for slice in result['slices']:
 		file.write('\n')
 		strTmp = str(slice)
 		strTmp = strTmp.replace('(', '')
@@ -48,5 +50,6 @@ def writeOutput(result):
 		strTmp = strTmp.replace(',', '')
 		file.write(strTmp)
 		
-readFile(sys.argv[1])
+infos, pizza = readFile(sys.argv[1])
+result = algo.run(infos, pizza)
 writeOutput(result)
