@@ -1,6 +1,8 @@
 import sys
 import algo
 
+fileName = sys.argv[1]
+
 def readFile(filename):
 	file = open(filename, 'r')
 
@@ -37,8 +39,8 @@ def readFile(filename):
 		
 # {'size':3, 'slice':[(1, 2, 3, 4), (5, 6, 7, 8), (9, 10, 11, 12)]}
 		
-def writeOutput(result):
-	file = open('result.out', 'w')
+def writeOutput(result, filename):
+	file = open(filename, 'w')
 	
 	file.write(str(result['size']))
 	
@@ -50,6 +52,7 @@ def writeOutput(result):
 		strTmp = strTmp.replace(',', '')
 		file.write(strTmp)
 		
-infos, pizza = readFile(sys.argv[1])
+infos, pizza = readFile(fileName)
 result = algo.run(infos, pizza)
-writeOutput(result)
+fileName = (fileName.split('.'))[0] + '.out'
+writeOutput(result, fileName)
