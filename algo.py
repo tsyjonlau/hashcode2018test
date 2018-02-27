@@ -62,3 +62,14 @@ def run(infos, pizza):
                 if coords is not None: 
                     output['slices'].append(coords)
     return output
+
+def fill_slice(checked, result, infos):
+    y = 0
+    for y in range(0, infos['row']):
+	    x = 0
+	    for x in range(0, infos['column']):
+		    if checked[y][x] == 0:
+			    result['slice'].append(tuple((y,x,y,x)))
+		    x += 1
+	    y += 1
+    return result
